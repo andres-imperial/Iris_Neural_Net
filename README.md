@@ -4,11 +4,11 @@ This neural net utilizes backpropagation, gradient decent, and feed forward arch
 definable number of training runs along with net size.
 
 ### Compile/Install
-+ Download/Clone repo to local machine.
-`git clone https://github.com/andres-imperial/Iris_Neural_Net
++ Download/Clone repo to local machine.  
+`git clone https://github.com/andres-imperial/Iris_Neural_Net`
 
-### Use  
-+ To begin the program execute 'main'
+### Use   
++ To begin the program execute 'main'  
 `./main`
 
 ### Contact

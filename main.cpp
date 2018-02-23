@@ -20,12 +20,27 @@ void showVectorVals(std::string label, std::vector<double> &v) {
 }
 
 int main(void) {
+    int maxPass;
+    int nodes;
+    std::string line;
+    std::vector<unsigned> topology;
+
+    std::cout << "Enter topology of neural net.(for a net with two input hidden"
+              << "layer of 3 nodes and one output you would type:2 3 1)\n";
+    std::getline(std::cin, line);
+    std::stringstream ss(line);
+    while(ss >> nodes) {
+        topology.push_back(nodes);
+    }
+
+    std::cout << "Enter number of training passes for neural net: ";
+    std::cin >> maxPass;
+
     bool flag = true;
     std::ifstream df;
     df.open("data.txt");
     std::vector<double> inputVals, targetVals(3), resultVals;
 
-    std::vector<unsigned> topology{4,8,3};
 
     Net myNet(topology);
 
@@ -54,11 +69,13 @@ int main(void) {
         std::cout << "Net recent average error: "
                 << myNet.getRecentAverageError() << std::endl;
 
-        if (df.eof() && trainingPass < 2000) {
+        // Continue to reset training file if training is not finished
+        if (df.eof() && trainingPass < maxPass) {
             df.clear();
             df.seekg(0, std::ios::beg);
         }
 
+        // Test the neural net once training is done
         if (df.eof() && flag) {
             df.close();
             df.clear();
